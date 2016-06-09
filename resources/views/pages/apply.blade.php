@@ -113,7 +113,7 @@
                             <select id="state" name="state" class="form-control" style="font-size: 18px;" 
                             >
 								<option value ="">Tiểu bang</option>
-								@foreach( state() as $option)
+								@foreach( \App\Helpers\Helper::state() as $option)
 									<option value ="{{ $option['key'] }}" 
 										{{ old('state') === $option['key'] ? 'selected' : '' }}
 									>
@@ -139,7 +139,7 @@
 	                    >
 	                        <select name="q_money"  class="form-control" style="font-size: 18px;" >
 								<option value ="">Bạn cần số tiền tài trợ bao nhiêu ?</option>
-								@foreach( q_money() as $option)
+								@foreach( \App\Helpers\Helper::q_money() as $option)
 									<option value ="{{ $option['key'] }}" 
 										{{ old('q_money') === $option['key'] ? 'selected' : '' }}
 									>
@@ -159,7 +159,7 @@
 	                    >
 	                        <select name="q_fund"  class="form-control" style="font-size: 18px;" >
 								<option value ="">Mục đích tài trợ vốn bạn làm gì ?</option>
-								@foreach( q_fund() as $option)
+								@foreach( \App\Helpers\Helper::q_fund() as $option)
 									<option value ="{{ $option['key'] }}" 
 										{{ old('q_fund') === $option['key'] ? 'selected' : '' }}
 									>
@@ -179,7 +179,7 @@
 	                    >	
 	                        <select name="q_credit" class="form-control" style="font-size: 18px;" >	
 								<option value="">Phạm vi số điểm tín dụng cá nhân...</option>
-								@foreach( q_credit() as $option)
+								@foreach( \App\Helpers\Helper::q_credit() as $option)
 									<option value ="{{ $option['key'] }}" 
 										{{ old('q_credit') === $option['key'] ? 'selected' : '' }}
 									>

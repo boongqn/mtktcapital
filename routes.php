@@ -10,11 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-/*
+
 Route::get('/test', function() {
     return Response::download('stuff/file/1464850848-icon1.zip');
 });
-*/
+
 
 Route::group(['middleware' => 'web'], function () {
 
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // Route page careers
     Route::get('/tuyen-dung', function () {  return view('pages.career');  })->name('career');
-    Route::post('/tuyen-dung', 'CustomerController@storeCareers')->name('career');
+    Route::post('/careers', 'CustomerController@storeCareers');
 
 
     // Route page contact
@@ -58,7 +58,7 @@ Route::group(['middleware' => 'web'], function () {
     
     // Route page apply now
     Route::get('/ap-dung-bay-gio', 'CustomerController@applyNow')->name('apply.index');
-    Route::post('/ap-dung-bay-gio', 'CustomerController@storeApplyNow')->name('apply.store');
+    Route::post('/apply', 'CustomerController@storeApplyNow')->name('apply.store');
    
 
     /**
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'web'], function () {
         ]);
         
         Route::get('/request/login', 'Auth\AuthController@getSignIn')->name('admin.login');
-        Route::post('/request/login', 'Auth\AuthController@postSignIn')->name('admin.post.login');
+        Route::post('/request/login', 'Auth\AuthController@postSignIn')->name('admin.login');
 
         Route::get('/token', 'AdminController@infoCustomer');
         Route::put('/token/{id}/update', 'AdminController@updateCustomer');

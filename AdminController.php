@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function infoCustomer(Request $request) {
 
         //  => Helpers/helper.php
-        \App\Helpers\Helper::validateReactToken($request); 
+        validateReactToken($request); 
 
         $customers = Customer::orderBy('created_at', 'DESC')->paginate(20);
         $users     = user::all();
@@ -46,11 +46,7 @@ class AdminController extends Controller
      */
     public function deleteCustomer($id) {
 
-    	$customer = Customer::find($id);
-
-        if($customer) { Template::delete($customer->file);  }
-
-        $customer->delete();
+    	Customer::find($id)->delete();
 
     	return response()->json([
     		'delete' => 'success'
@@ -118,9 +114,7 @@ class AdminController extends Controller
 
             } else {
 
-                \Auth::user()->update([
-                    'name' => $request->name, 'password' => bcrypt($request->password)
-                ]);
+                \Auth::user()->update($request->all());
 
                 return response()->json([
                     'update' => true
@@ -128,4 +122,7 @@ class AdminController extends Controller
             }
         } 
     }
+
+
+
 }

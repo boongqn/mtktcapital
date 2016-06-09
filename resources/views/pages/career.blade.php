@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('file') ? 'has-error' : ' ' }}">
                 <label for="exampleInputFile" class="col-sm-3 control-label">Tập tin</label>
                 <div class="col-sm-6">
                     <input type="file" name="file" class="form-control file-input" >

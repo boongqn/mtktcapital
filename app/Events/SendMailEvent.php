@@ -19,12 +19,13 @@ class SendMailEvent extends Event
      */
     public function __construct($event)
     {   
-        /*$this->id       = $contact->id;
-        $this->email    = $contact->email;
-        $this->fullname = $contact->full_name;*/
-
         $this->email    = $event->email;
         $this->fullName = $event->full_name;
+
+        $this->phone    = $event->phone;
+        $this->state    = $event->state;
+        $this->business = $event->business;
+        $this->industry = $event->industry;
     }
 
     /**

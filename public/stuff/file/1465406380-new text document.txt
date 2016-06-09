@@ -1,0 +1,6 @@
+<h5><img style="width: 30px; float: left;" src="http://fastig.xyz/wp-content/uploads/2016/05/vna_icon1.png" />  Business Analysis Training</h5>
+<p style="text-align: justify;">We have some of the most talented group of business analysts working on our team. In our words, we do business analysis right. <span style="color: #0000ff;"><a style="color: #0000ff;" href="http://fastig.xyz/contact-us/">Contact us</a></span> and let us help analyze your business data the right way...</p>
+[divider height="6" line="0"]
+
+<a style="color: #119548;" href="#"> Read more ? </a>
+

@@ -27,7 +27,13 @@ class NotifyMailListener
      */
     public function handle($event)
     {
-        Mail::send('partials.email_notify', ['name' => $event->fullName], function ($m) use($event) {
+        $notify = [
+            'name'     => $event->fullName,  'email' => $event->email, 
+            'phone'    => $event->phone, 'state' => $event->state,  
+            'business' => $event->business, 'industry' => $event->industry
+        ];
+
+        Mail::send('partials.email_notify',  $notify , function ($m) use($event) {
             $m->from('nhienle5@gmail.com', $event->fullName);
             $m->to('nhienle5@gmail.com')->subject('New customer information registration page Apply-Now');
         });

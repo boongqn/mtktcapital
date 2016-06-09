@@ -70,7 +70,7 @@ class CustomerController extends Controller
     public function storeCareers(Request $request) {
 
         $validate =  $this->validate($request, [
-            'full_name' => 'required', 'email' => 'required|email', 'file' => 'required'
+            'full_name' => 'required', 'email' => 'required|email'
         ]);
 
         if($validate) {
@@ -85,4 +85,12 @@ class CustomerController extends Controller
 
         return redirect()->back()->with([ 'msg' => 'success' ]);
     }
+/*
+
+    public function createCareer($request, $customer) {
+        if($request->get('full_name')) {
+            $customer->fixFullName($request);
+        }
+    }
+*/
 }

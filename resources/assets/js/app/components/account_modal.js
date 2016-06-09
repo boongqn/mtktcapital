@@ -20,9 +20,14 @@ var account_modal = React.createClass({
 
 			this.setState({ success : 'form-group has-success', errors : { name : '', password : '' } });
 
+			setTimeout(()=>{
+				window.location.reload(true);
+			}, 600);
+
 		}).catch((response)=>{
 			
 			this.setState({ errors : { name : response.data.name, password : response.data.password } });
+		
 		});
 
 	},

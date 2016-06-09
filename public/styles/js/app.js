@@ -21674,6 +21674,10 @@ var account_modal = _react2.default.createClass({
 		(0, _index.updateAccount)(rows).then(function (response) {
 
 			_this.setState({ success: 'form-group has-success', errors: { name: '', password: '' } });
+
+			setTimeout(function () {
+				window.location.reload(true);
+			}, 600);
 		}).catch(function (response) {
 
 			_this.setState({ errors: { name: response.data.name, password: response.data.password } });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
@@ -68,11 +69,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        
+
         /*return User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);*/
+
     }
 
 
@@ -81,8 +85,10 @@ class AuthController extends Controller
         return $this->showLoginForm();
     }
 
+
+
     public function postSignIn(Request $request) {
-        return $this->postLogin($request);
+       return $this->postLogin($request);
     }
 
 

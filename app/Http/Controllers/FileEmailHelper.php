@@ -6,7 +6,7 @@ use File;
 
 class FileEmailHelper
 {	
-	const CHECK  = 'resources\views\partials\email_confirm.blade.php';
+	const CHECK         = 'resources\views\partials\email_confirm.blade.php';
 
 	// show all content
 	public static function show() {
@@ -18,11 +18,6 @@ class FileEmailHelper
 		return File::get($file);
 	}
 
-	// update file
-	public static function put($file) {
-		return File::put(base_path(self::CHECK), $file);
-	}
-
 	// check file exists
 	public static function check($file = null) {
 		if(File::exists($file) && File::isFile($file)) {
@@ -30,5 +25,14 @@ class FileEmailHelper
 		}
 		return $file;
 	}
+	
+	// update file
+	public static function put($file) {
+		return File::put(base_path(self::CHECK), $file);
+	}
 
+	// update file
+	public static function delete($path) {
+		return File::delete(public_path($path));
+	}
 }

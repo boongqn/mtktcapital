@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-push-3" >
 
-			{!! Form::open([ 'method' => 'POST', 'route' => 'admin.login', 'class' => 'login' ]) !!}
+			{!! Form::open([ 'method' => 'POST', 'route' => 'admin.post.login', 'class' => 'login' ]) !!}
 
 				<div class="form-group {{ $errors->has('name') ? 'has-error' : ' ' }}"
 				>
