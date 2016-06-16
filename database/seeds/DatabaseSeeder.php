@@ -13,21 +13,21 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         
-        /*for ($i=0; $i < 16 ; $i++) { 
+        for ($i=0; $i < 10 ; $i++) { 
            \App\Customer::create([
                 'first_name' => 'Lorem ',
                 'last_name'  => $i,
                 'email'      => 'admin@gmail.com',
                 'phone'      => 123456789
             ]);
-        }*/
+        }
 
 
-        \App\User::create([
-            'name'  => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('123456')
-        ]);
+        // \App\User::create([
+        //     'name'  => 'admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => bcrypt('123456')
+        // ]);
 
         
     }

@@ -25,11 +25,8 @@ class Customer extends Model
     }
   	
     public function fixFullName($request) {
-
         $this->full_name = $request->get('last_name').' '.$request->get('first_name');
-
         $this->save();
-
         return true;
     }
 
@@ -37,10 +34,10 @@ class Customer extends Model
         $this->attributes['full_name'] = ucwords($value);
     }
 
-
     public function setUploadFile(UploadedFile $uploadedFile) {
-        $fileName = Carbon::now()->timestamp.'-'.strtolower($uploadedFile->getClientOriginalName());
-       
+        $ext      = $uploadedFile->getClientOriginalExtension();
+        $fileName = Carbon::now()->timestamp.'-'.str_slug($this->full_name).'.'.$ext;
+
         if(!File::isDirectory(public_path('stuff/file'))) {
             File::makeDirectory(public_path('stuff/file'));
         }
@@ -52,5 +49,9 @@ class Customer extends Model
         $this->save();
 
         return true;
+    }
+
+    public function substrFile($fileName) {
+        return (strstr($fileName, 'stuff/file')) ? explode('/', $fileName)[2] : $fileName;
     }
 }

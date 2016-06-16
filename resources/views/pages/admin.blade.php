@@ -3,45 +3,43 @@
 
 @section('content')
 	
-	
-
-	<style type="text/css">
-		table td {
-			text-align: initial !important;
-		}
-		td {
-			text-align: initial !important;
-		}
-		h1 {
-			text-align: initial !important;
-		}
-		
-		table tr td ul li ul {
-			padding-left: 50px;
-		} 
-		table tr td ul {
-			padding: 5px 0px;
-		}
-		.table {
-			width: 0;
-		}
-
-		table tr td p, table tr td ul li{
-			font-size: 14px;
-		}
-		table tr td h1 {
-			font-size: 32px;
-			text-align: center !important;
-		}
-		
-		
-	</style>
-
-    <div class="container prefix_admin">  <br><br>
-
-    	<div class="myAdmin"></div>
-    	
-    </div>
     
+
+	<div class="container">
+
+		@include('partials.navbar_admin')
+		
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div class="alert alert-info">
+				<div class="panel-body">
+					<center><a href="{{ route('showInfoCustomer') }}"><h3>Thông Tin Khách Hàng</h3></a></center>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div class="alert alert-info">
+				<div class="panel-body">
+					<center><a href="{{ route('showInfoCareer') }}"><h3>Thông Tin Tuyển Dụng</h3></a></center>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div class="alert alert-info">
+				<div class="panel-body">
+					<center><a href="{{ route('showContentEmail') }}"><h3>Mẫu thông báo Email</h3></a></center>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div class="alert alert-info">
+				<div class="panel-body">
+					<center><a href="{{ route('showAccountAdmin') }}"><h3>Tài khoản Admin</h3></a></center>
+				</div>
+			</div>
+		</div>
+	</div>
 
 @endsection

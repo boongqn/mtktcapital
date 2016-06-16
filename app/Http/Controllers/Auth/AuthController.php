@@ -33,9 +33,9 @@ class AuthController extends Controller
      */
     //protected $redirectTo = '/';
 
-    protected $redirectTo          = '/admin/request';
-    
-    //protected $redirectAfterLogout = '/';
+    protected $redirectTo          = '/admin/mtkt';
+    protected $redirectAfterLogout = '/';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -43,55 +43,43 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        //$this->middleware('auth')
+        //$this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-   
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'password' => 'required|min:6'
-        ]);
+
+    public function getIndex() {
+        return view('pages.admin');
     }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        
-
-        /*return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);*/
-
-    }
-
 
     // Code news
-    public function getSignIn() {
+    public function getLogins() {
         return $this->showLoginForm();
     }
 
 
-
-    public function postSignIn(Request $request) {
+    public function postLogins(Request $request) {
        return $this->postLogin($request);
     }
 
+    public function updateUserAdmin(Request $request) {
+        
+        $this->validate($request, ['name' => 'required', 'password' => 'required']);
 
+        Auth::user()->update([
+            'name'     => $request->name,
+            'password' => bcrypt($request->password)
+        ]);
+
+        return redirect()->back()->with([ 'alert' => 'success', 'msg' => 'UPDATE ACCOUNT SUCCESS !' ]);
+        
+    }
+
+
+    public function getLogouts() {
+        Auth::logout();
+        return redirect()->route('/');
+    }
  
 
 }

@@ -10,11 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-/*
-Route::get('/test', function() {
-    return Response::download('stuff/file/1464850848-icon1.zip');
-});
-*/
+
 
 Route::group(['middleware' => 'web'], function () {
 
@@ -57,7 +53,7 @@ Route::group(['middleware' => 'web'], function () {
 
     
     // Route page apply now
-    Route::get('/ap-dung-bay-gio', 'CustomerController@applyNow')->name('apply.index');
+    Route::get('/ap-dung-bay-gio', function () {  return view('pages.apply'); })->name('apply.index');
     Route::post('/ap-dung-bay-gio', 'CustomerController@storeApplyNow')->name('apply.store');
    
 
@@ -66,32 +62,66 @@ Route::group(['middleware' => 'web'], function () {
      */
 
     Route::group(['prefix' => 'admin'], function () {
-        Route::get('/request', [
-             'as'         => 'admin',
-             'middleware' => 'auth',
-             'uses'       => 'AdminController@index'
+
+        Route::get('/mtkt',[
+            'as'         => 'admin',
+            'middleware' => 'auth',
+            'uses'       => 'Auth\AuthController@getIndex'
         ]);
         
-        Route::get('/request/login', 'Auth\AuthController@getSignIn')->name('admin.login');
-        Route::post('/request/login', 'Auth\AuthController@postSignIn')->name('admin.post.login');
 
-        Route::get('/token', 'AdminController@infoCustomer');
-        Route::put('/token/{id}/update', 'AdminController@updateCustomer');
-        Route::delete('/token/{id}/delete', 'AdminController@deleteCustomer');
-        Route::put('/token/template/email', 'AdminController@updateTemplateEmail');
+        // Auth
+        Route::get('/mtkt/login', 'Auth\AuthController@getLogins')
+        ->name('admin.login');
 
-        Route::put('/token/account', 'AdminController@updateAccount');
+        Route::post('/mtkt/login', 'Auth\AuthController@postLogins')
+        ->name('admin.post.login');
+
+        Route::put('/mtkt/update/account', 'Auth\AuthController@updateUserAdmin')
+        ->name('admin.update.account');
+
+        Route::get('/mtkt/logout', 'Auth\AuthController@getLogouts')->name('admin.logout');
+
+        Route::put('/mtkt/cap-nhat-tai-khoan/{id}', 'Auth\AuthController@updateAccount')
+        ->name('updateAccount');
+        // End Auth
 
 
+
+        Route::group(['middleware' => 'auth'], function () { 
+
+            Route::get('/mtkt/thong-tin-khach-hang', 'CustomerController@showInfoCustomer')
+            ->name('showInfoCustomer');
+           
+
+            Route::get('/mtkt/thong-tin-khach-hang/{id}', 'CustomerController@storeInfoCustomer')
+            ->name('storeInfoCustomer');
+
+            Route::put('/mtkt/thong-tin-khach-hang/{id}', 'CustomerController@editInfoCustomer')
+            ->name('editInfoCustomer');
+
+            Route::delete('/mtkt/thong-tin-khach-hang/{id}', 'CustomerController@deleteCustomer')
+            ->name('deleteCustomer');
+
+
+            Route::get('/mtkt/thong-tin-tuyen-dung', 'CustomerController@showInfoCareer')
+            ->name('showInfoCareer');
+
+            Route::get('/mtkt/thong-tin-tuyen-dung/{id}', 'CustomerController@storeCareer')
+            ->name('storeCareer');
+
+
+            Route::get('/mtkt/mau-thong-bao-email', 'CustomerController@showContentEmail')
+            ->name('showContentEmail');
+
+            Route::put('/mtkt/mau-thong-bao-email-cap-nhat', 'CustomerController@updateTemplateEmail')
+            ->name('updateTemplateEmail');
+
+            Route::get('/mtkt/tai-khoan', 'CustomerController@showAccountAdmin')
+            ->name('showAccountAdmin');
+
+            Route::post('export', 'CustomerController@export')->name('export.file');
+        });
+    
     });
-
-
-    Route::get('/auth/logout', [
-        'as'         => 'admin.logout',
-        'uses'       => 'Auth\AuthController@logout'
-    ]);
-
-    Route::get('export/{str}', 'AdminController@export');
-
 });
-

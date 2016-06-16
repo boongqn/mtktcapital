@@ -6,24 +6,18 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Http\Requests;
 use App\Events\SendMailEvent, Event;
-
+use App\Http\Controllers\FileEmailHelper as Template;
 
 
 class CustomerController extends Controller
 {
     protected $customer;
 
+
     public function __construct(Customer $customer) {
         $this->customer = $customer;
     }
 
-    public function applyNow() {
-    	return view('pages.apply');
-    }
-
-    public function careers() {
-        return view('pages.career');
-    }
 
     /**
      * [storeApplyNow description]
@@ -84,5 +78,103 @@ class CustomerController extends Controller
         }
 
         return redirect()->back()->with([ 'msg' => 'success' ]);
+    }
+
+
+
+    // Info Customer
+    public function showInfoCustomer() {
+        $customers =  $this->customer->where('role_id', 'apply')
+                           ->orderBy('created_at', 'desc')
+                           ->paginate(4);
+
+        return view('layouts.table_customer', ['customers' => $customers ]);
+    }
+
+
+
+
+    public function storeInfoCustomer($id) {
+        $customer = $this->customer->find($id);
+        return view('layouts.edit_customer', ['customer' => $customer]);
+    }
+
+
+
+
+    public function editInfoCustomer(Request $request, $id) {
+        
+        $customer = $this->customer->findOrFail($id);
+
+        if($request->hasFile('file')) {  Template::delete($customer->file);  }
+
+        $customer->update($request->all());
+
+        if($request->hasFile('file')) {  $customer->setUploadFile($request->file('file'));  }
+
+        return redirect()->back()->with([ 'alert' => 'success', 'msg' => 'UPDATE SUCCESS !' ]);
+    }
+
+
+
+
+
+    public function deleteCustomer($id) {
+        $customer = $this->customer->findOrFail($id);
+
+        if(strlen($customer->file) > 0 && $customer->file != '') {  Template::delete($customer->file);  }
+
+        $customer->delete();
+
+        return redirect()->back()->with([ 'alert' => 'success', 'msg' => 'DELETE SUCCESS !' ]);
+    }
+    // End Info Customer
+    
+
+
+
+
+    public function showInfoCareer() {
+        $customers =  $this->customer->where('role_id', 'career')
+                           ->orderBy('created_at', 'desc')
+                           ->paginate(12);
+        return view('layouts.table_career', ['customers' => $customers ]);
+    }
+
+    public function storeCareer($id) {
+        $customer = $this->customer->find($id);
+        return view('layouts.edit_career', ['customer' => $customer]);
+    }
+
+    public function showContentEmail() {
+
+         return view('layouts.table_email', [
+            'email_confirm' => Template::showMailConfirm()
+         ]);
+    }
+
+    
+    public function updateTemplateEmail(Request $request) {
+
+        if(Template::check(base_path(Template::EMAIL_CONFIRM))) {
+            Template::put($request->template);
+        }
+
+        return redirect()->back()->with([ 'alert' => 'success', 'msg' => 'UPDATE EMAIL TEMPLATE SUCCESS !' ]);
+    }
+
+
+    public function export(Request $request) {
+
+        if(Template::check(public_path($request))) {
+            return response()->download(public_path($request->template));
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function showAccountAdmin() {
+        return view('layouts.table_account');
     }
 }
