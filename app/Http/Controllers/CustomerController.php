@@ -84,9 +84,9 @@ class CustomerController extends Controller
 
     // Info Customer
     public function showInfoCustomer() {
-        $customers =  $this->customer->where('role_id', 'apply')
+        $customers =  $this->customer->whereRoleId('apply')
                            ->orderBy('created_at', 'desc')
-                           ->paginate(4);
+                           ->paginate(30);
 
         return view('layouts.table_customer', ['customers' => $customers ]);
     }
@@ -96,6 +96,7 @@ class CustomerController extends Controller
 
     public function storeInfoCustomer($id) {
         $customer = $this->customer->find($id);
+        $customer->setActive();
         return view('layouts.edit_customer', ['customer' => $customer]);
     }
 
@@ -135,14 +136,15 @@ class CustomerController extends Controller
 
 
     public function showInfoCareer() {
-        $customers =  $this->customer->where('role_id', 'career')
+        $customers =  $this->customer->whereRoleId('career')
                            ->orderBy('created_at', 'desc')
-                           ->paginate(12);
+                           ->paginate(30);
         return view('layouts.table_career', ['customers' => $customers ]);
     }
 
     public function storeCareer($id) {
         $customer = $this->customer->find($id);
+        $customer->setActive();
         return view('layouts.edit_career', ['customer' => $customer]);
     }
 

@@ -23,28 +23,28 @@
 
 		function q_fund() {
 			return [
-				['key' => "Startup", 'value' => "Bắt đầu một doanh nghiệp mới"],
-				['key' => "Working Capital", 'value' => "Vốn lưu động"],
-				['key' => "Expansion", 'value' => "Mở rộng"],
-				['key' => "Equipment Leases", 'value' => "Cho thuê tài sản thiết bị "],
-				['key' => "Debt Consolidation", 'value' => "Giảm nợ"],
-				['key' => "Other", 'value' => "Khác ..."]
+				['key' => "Bắt đầu một doanh nghiệp mới", 'value' => "Bắt đầu một doanh nghiệp mới"],
+				['key' => "Vốn lưu động", 'value' => "Vốn lưu động"],
+				['key' => "Mở rộng", 'value' => "Mở rộng"],
+				['key' => "Cho thuê tài sản thiết b", 'value' => "Cho thuê tài sản thiết bị"],
+				['key' => "Giảm nợ", 'value' => "Giảm nợ"],
+				['key' => "Khác ...", 'value' => "Khác ..."]
 			];
 		}
 
 		function q_credit() {
 			return [
-				['key' => "720+ (Excellent)", 'value' => "720+ (Xuất sắc)"],
-				['key' => "680 - 719 (Great)", 'value' => "680 - 719 (Tuyệt)"],
-				['key' => "50 - 679 (Good)", 'value' => "50 - 679 (Tốt)"],
-				['key' => "600 - 649 (Ok)", 'value' => "600 - 649 (Được)"],
+				['key' => "720+ (Xuất sắc)", 'value' => "720+ (Xuất sắc)"],
+				['key' => "680 - 719 (Tuyệt)", 'value' => "680 - 719 (Tuyệt)"],
+				['key' => "50 - 679 (Rất tốt)", 'value' => "50 - 679 (Rất tốt)"],
+				['key' => "600 - 649 (Tạm được)", 'value' => "600 - 649 (Tạm được)"],
 				['key' => "599 or Below (Not So Good)", 'value' => "599 or Below (Không tốt)"]
 			];
 		}
 
 		function state() {
 			return [
-				['key' => "VietNamese", 'value' => "VI"], 
+				['key' => "Việt Nam", 'value' => "VI"], 
 				['key' => "Alabama", 'value' => "AL"], 
 				['key' => "Alaska", 'value' => "AK"], 
 				['key' => "Arizona", 'value' => "AZ"], 
@@ -131,6 +131,7 @@
 
 
 						<input type="text" name="role_id" value="apply" hidden="hidden" >
+						<input type="text" name="active" value="1" hidden="hidden" >
 
                         <div class="form-group 
                         	{{ $errors->has('first_name') ? 'has-error' : '' }}"

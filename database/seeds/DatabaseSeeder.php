@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
            \App\Customer::create([
                 'first_name' => 'Lorem ',
                 'last_name'  => $i,
+                'role_id'    => 'apply',
+                'active'    => 1,
                 'email'      => 'admin@gmail.com',
                 'phone'      => 123456789
             ]);

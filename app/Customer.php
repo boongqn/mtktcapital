@@ -54,4 +54,10 @@ class Customer extends Model
     public function substrFile($fileName) {
         return (strstr($fileName, 'stuff/file')) ? explode('/', $fileName)[2] : $fileName;
     }
+
+    public function setActive() {
+        $this->active = 0;
+        $this->save();
+        return;
+    }
 }

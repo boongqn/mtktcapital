@@ -1,0 +1,3 @@
+<center>
+	{{ $customers->links() }}
+</center>

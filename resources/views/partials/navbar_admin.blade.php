@@ -2,21 +2,24 @@
     <br>
     <ol class="breadcrumb">
         <li>
-            <a href="{{ route('showInfoCustomer') }}">Customers</a>
+            <a href="{{ route('admin') }}">Admin</a>
         </li>
         <li>
-            <a href="{{ route('showInfoCareer') }}">Careers</a>
+            <a href="{{ route('showInfoCustomer') }}">Thông tin khách hàng</a>
         </li>
         <li>
-            <a href="{{ route('showContentEmail') }}">Email Template</a>
+            <a href="{{ route('showInfoCareer') }}">Thông tin tuyển dụng</a>
         </li>
         <li>
-            <a href="{{ route('showAccountAdmin') }}">Account Admin</a>
+            <a href="{{ route('showContentEmail') }}">Mẫu thông báo E-Mail</a>
+        </li>
+        <li>
+            <a href="{{ route('showAccountAdmin') }}">Quản lý tài khoản Admin</a>
         </li>
         
         
         <li>
-            <a href="{{ route('admin.logout') }}" class="pull-right">Log Out</a>
+            <a href="{{ route('admin.logout') }}" class="pull-right">Log out</a>
         </li>
         
     </ol>

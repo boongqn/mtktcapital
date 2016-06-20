@@ -30,7 +30,7 @@ class EventMailListener
     {   
         Mail::send('partials.email_confirm', ['name' => $event->fullName], function ($m) use($event) {
             $m->from('exlaravel5@gmail.com', 'MTKT Capital');
-            $m->to('nhienle5@gmail.com')->subject('MTKT Capital - Your Information Was Successfully Received');
+            $m->to('nhienle5@gmail.com')->subject('MTKT Capital - thông tin của bạn đã gửi thành công');
         });
     }
 }

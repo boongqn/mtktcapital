@@ -1,0 +1,35 @@
+/* TABLE CUSTOMER */
+.trCus td {
+	font-size: 14px;
+}
+
+.fade_table {
+	opacity: 0;
+	transition: all 0.1s ease-in-out;
+}
+
+.mark_read {
+	background: rgba(241, 196, 15,0.2);
+}
+
+/* 
+Animation
+.dlFade {
+	animation-name: delete;
+	-webkit-animation-name: delete;
+	animation-duration: 0.2s;
+	-webkit-animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes delete {
+    from {opacity: 0.8; background-color: rgba(231, 76, 60,1.0);}
+    to {opacity: 0; background-color: rgba(231, 76, 60,1.0);}
+}
+
+Standard syntax
+@keyframes delete {
+    from {opacity: 0.8; background-color: rgba(231, 76, 60,1.0);}
+    to {opacity: 0; background-color: rgba(231, 76, 60,1.0);}
+} */

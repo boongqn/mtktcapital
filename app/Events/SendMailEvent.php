@@ -26,6 +26,11 @@ class SendMailEvent extends Event
         $this->state    = $event->state;
         $this->business = $event->business;
         $this->industry = $event->industry;
+
+        $this->q_money  = $event->q_money;
+        $this->q_fund   = $event->q_fund;
+        $this->q_credit = $event->q_credit;
+        $this->note     = $event->note;
     }
 
     /**

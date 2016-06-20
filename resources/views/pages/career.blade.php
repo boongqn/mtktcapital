@@ -49,6 +49,7 @@
             
 
             <input type="text" name="role_id" value="career" hidden="hidden" >
+            <input type="text" name="active" value="1" hidden="hidden" >
 
 
             <div class="form-group {{ $errors->has('full_name') ? 'has-error' : ' ' }}">

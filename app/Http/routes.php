@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::group(['middleware' => 'web'], function () {
 
     // Route page home
@@ -102,6 +101,8 @@ Route::group(['middleware' => 'web'], function () {
 
             Route::delete('/mtkt/thong-tin-khach-hang/{id}', 'CustomerController@deleteCustomer')
             ->name('deleteCustomer');
+
+            
 
 
             Route::get('/mtkt/thong-tin-tuyen-dung', 'CustomerController@showInfoCareer')

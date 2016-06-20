@@ -5,7 +5,7 @@
     
 	
 	<div class="container">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-push-3"  style="margin-top: 100px;">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-push-3 fade_table"  style="margin-top: 100px;">
 
 			{!! Form::open([ 'method' => 'POST', 'route' => 'admin.post.login', 'class' => 'login' ]) !!}
 

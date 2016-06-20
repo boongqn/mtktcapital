@@ -49,7 +49,11 @@ class AuthController extends Controller
 
 
     public function getIndex() {
-        return view('pages.admin');
+        $customer = \App\Customer::whereActive(1)->whereRoleId('apply')->get();
+        $career   = \App\Customer::whereActive(1)->whereRoleId('career')->get();
+        return view('pages.admin', [
+            'customer' => count($customer), 'career' => count($career)
+        ]);
     }
 
     // Code news
